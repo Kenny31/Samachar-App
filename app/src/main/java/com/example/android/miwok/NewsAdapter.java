@@ -56,7 +56,7 @@ public class NewsAdapter extends ArrayAdapter<News>  {
                     R.layout.list_item, parent, false);
 
         }
-//dummy test
+
         News currentNews = getItem(position);
 
         String imageUrl = currentNews.getImageUrl();
