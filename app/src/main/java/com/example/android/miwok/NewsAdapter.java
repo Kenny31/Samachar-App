@@ -68,19 +68,11 @@ public class NewsAdapter extends ArrayAdapter<News>  {
 
         String title = currentNews.getTitle();
         TextView titleTextView = (TextView) listItemView.findViewById(R.id.title_view);
-        titleTextView.setText(title);
+        titleTextView.setText(title + "...");
 
         String desc = currentNews.getDescription();
         TextView descriptionTextView = (TextView) listItemView.findViewById(R.id.description_view);
-        descriptionTextView.setText(desc);
-        Log.i("aaa",currentNews.getDescription()+"\n"+
-                    currentNews.getImageUrl()+"\n"+
-                    currentNews.getTime()+"\n"+
-                    currentNews.getUrl()+"\n"+
-                    currentNews.getTitle());
-
-//        TextView dateText = (TextView)listItemView.findViewById(R.id.date_view);
-//        dateText.setText(currentNews.getTime());
+        descriptionTextView.setText(desc + "...");
 
         String publishedAt = currentNews.getTime();
         if (! publishedAt.equals("null")) {
@@ -88,15 +80,15 @@ public class NewsAdapter extends ArrayAdapter<News>  {
             String[] parts = publishedAt.split(LOCATION_SEPARATOR);
             date = parts[0];
             time = parts[1];
+            time=time.substring(0,time.length()-1);
             dateTextView = (TextView) listItemView.findViewById(R.id.date_view);
             timeTextView = (TextView) listItemView.findViewById(R.id.time_view);
             dateTextView.setText(date);
             timeTextView.setText(time);
         }
         else if (publishedAt.equals("null")){
-//            dateTextView.setVisibility(View.GONE);
-//            timeTextView.setVisibility(View.GONE);
-
+//            dateTextView.setVisibility(View.INVISIBLE);
+//            timeTextView.setVisibility(View.INVISIBLE);
         }
         return listItemView;
     }

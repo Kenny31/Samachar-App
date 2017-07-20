@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="5dp"
+            android:textSize="16sp"
             android:gravity="top"
             android:maxLines="4"
             android:textAppearance="?android:textAppearanceMedium"
@@ -69,16 +70,20 @@
 
             <TextView
                 android:id="@+id/time_view"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:layout_gravity="end"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
                 tools:text="11:40 AM" />
 
             <TextView
                 android:id="@+id/date_view"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 tools:text="21-1-2017" />

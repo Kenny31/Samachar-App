@@ -15,7 +15,7 @@
 -->
 <resources>
     <!-- Primary color of the app (shown in the app bar) -->
-    <color name="primary_color">#F44336</color>
+    <color name="primary_color">#1B5E20</color>
 
     <!-- Primary dark color of the app (shown in the status bar) -->
     <color name="primary_dark_color">#D32F2F</color>

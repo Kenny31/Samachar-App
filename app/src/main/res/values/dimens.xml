@@ -14,5 +14,5 @@
 -->
 <resources>
     <!-- Height of each list item -->
-    <dimen name="list_item_height">180dp</dimen>
+    <dimen name="list_item_height">130dp</dimen>
 </resources>
