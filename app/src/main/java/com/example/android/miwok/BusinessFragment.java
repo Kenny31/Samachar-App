@@ -21,6 +21,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -43,6 +44,7 @@ public class BusinessFragment extends Fragment
 
     private static final String LOG_TAG = BusinessFragment.class.getName();
 
+    ListView newsListView;
     /**
      * URL for earthquake data from the USGS dataset
      */
@@ -78,27 +80,8 @@ public class BusinessFragment extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.activity_main, container, false);
-
-        // Find a reference to the {@link ListView} in the layout
-        ListView newsListView = (ListView) rootView.findViewById(R.id.list);
-
-        mEmptyStateTextView = (TextView) rootView.findViewById(R.id.empty_view);
-        newsListView.setEmptyView(mEmptyStateTextView);
-
-        // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
-        // adapter knows how to create list items for each item in the list.
-        mAdapter = new NewsAdapter(getActivity(), new ArrayList<News>());
-
-
-        // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
-        // {@link ListView} will display list items for each {@link Word} in the list.
-        newsListView.setAdapter(mAdapter);
-
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         // Set an item click listener on the ListView, which sends an intent to a web browser
         // to open a website with more information about the selected earthquake.
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -117,6 +100,31 @@ public class BusinessFragment extends Fragment
                 startActivity(websiteIntent);
             }
         });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        rootView = inflater.inflate(R.layout.layout, container, false);
+
+        // Find a reference to the {@link ListView} in the layout
+        newsListView = (ListView) rootView.findViewById(R.id.list);
+
+        mEmptyStateTextView = (TextView) rootView.findViewById(R.id.empty_view);
+        newsListView.setEmptyView(mEmptyStateTextView);
+
+        // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
+        // adapter knows how to create list items for each item in the list.
+        mAdapter = new NewsAdapter(getActivity(), new ArrayList<News>());
+
+
+        // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
+        // {@link ListView} will display list items for each {@link Word} in the list.
+        newsListView.setAdapter(mAdapter);
+
+
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)

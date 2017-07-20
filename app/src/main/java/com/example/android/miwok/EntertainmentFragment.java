@@ -65,7 +65,7 @@ public class EntertainmentFragment extends Fragment
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.activity_main, container, false);
+        rootView = inflater.inflate(R.layout.layout, container, false);
 
         // Find a reference to the {@link ListView} in the layout
         ListView newsListView = (ListView) rootView.findViewById(R.id.list);

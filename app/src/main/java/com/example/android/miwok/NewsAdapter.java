@@ -94,8 +94,8 @@ public class NewsAdapter extends ArrayAdapter<News>  {
             timeTextView.setText(time);
         }
         else if (publishedAt.equals("null")){
-            dateTextView.setVisibility(View.GONE);
-            timeTextView.setVisibility(View.GONE);
+//            dateTextView.setVisibility(View.GONE);
+//            timeTextView.setVisibility(View.GONE);
 
         }
         return listItemView;

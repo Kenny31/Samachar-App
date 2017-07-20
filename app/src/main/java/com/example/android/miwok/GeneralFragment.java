@@ -85,7 +85,7 @@ public class GeneralFragment extends Fragment
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.activity_main, container, false);
+        rootView = inflater.inflate(R.layout.layout, container, false);
 
         loadingIndicator = (ProgressBar)rootView.findViewById(R.id.loading_indicator);
 
