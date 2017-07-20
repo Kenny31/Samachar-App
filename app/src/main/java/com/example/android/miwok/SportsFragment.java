@@ -48,7 +48,7 @@ public class SportsFragment extends Fragment
      * URL for earthquake data from the USGS dataset
      */
     private static final String SPORTS_REQUEST_URL =
-            "https://newsapi.org/v1/articles?source=espn&sortBy=top&apiKey=2dc84c3059c64e559e8ec89649c242bc";
+            "https://newsapi.org/v1/articles?source=the-sport-bible&sortBy=top&apiKey=2dc84c3059c64e559e8ec89649c242bc";
 
     /**
      * Constant value for the earthquake loader ID. We can choose any integer.

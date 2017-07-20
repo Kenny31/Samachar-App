@@ -18,6 +18,7 @@ package com.example.android.miwok;
 import android.content.Context;
 import android.media.Image;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ import static java.lang.System.load;
 public class NewsAdapter extends ArrayAdapter<News>  {
 
     private static final String LOCATION_SEPARATOR = "T";
+    TextView dateTextView, timeTextView;
 
     public NewsAdapter(Context context, ArrayList<News> news) {
         super(context, 0, news);
@@ -71,17 +73,31 @@ public class NewsAdapter extends ArrayAdapter<News>  {
         String desc = currentNews.getDescription();
         TextView descriptionTextView = (TextView) listItemView.findViewById(R.id.description_view);
         descriptionTextView.setText(desc);
+        Log.i("aaa",currentNews.getDescription()+"\n"+
+                    currentNews.getImageUrl()+"\n"+
+                    currentNews.getTime()+"\n"+
+                    currentNews.getUrl()+"\n"+
+                    currentNews.getTitle());
+
+//        TextView dateText = (TextView)listItemView.findViewById(R.id.date_view);
+//        dateText.setText(currentNews.getTime());
 
         String publishedAt = currentNews.getTime();
-        String date, time;
-        String[] parts = publishedAt.split(LOCATION_SEPARATOR);
-        date = parts[0];
-        time = parts[1];
-        TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_view);
-        TextView timeTextView = (TextView) listItemView.findViewById(R.id.time_view);
-        dateTextView.setText(date);
-        timeTextView.setText(time);
+        if (! publishedAt.equals("null")) {
+            String date, time;
+            String[] parts = publishedAt.split(LOCATION_SEPARATOR);
+            date = parts[0];
+            time = parts[1];
+            dateTextView = (TextView) listItemView.findViewById(R.id.date_view);
+            timeTextView = (TextView) listItemView.findViewById(R.id.time_view);
+            dateTextView.setText(date);
+            timeTextView.setText(time);
+        }
+        else if (publishedAt.equals("null")){
+            dateTextView.setVisibility(View.GONE);
+            timeTextView.setVisibility(View.GONE);
 
+        }
         return listItemView;
     }
 }

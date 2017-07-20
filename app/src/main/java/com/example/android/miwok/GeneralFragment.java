@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class GeneralFragment extends Fragment
      * URL for earthquake data from the USGS dataset
      */
     private static final String GENERAL_REQUEST_URL =
-            "https://newsapi.org/v1/articles?source=the-hindu&sortBy=top&apiKey=2dc84c3059c64e559e8ec89649c242bc";
+            "https://newsapi.org/v1/articles?source=the-times-of-india&sortBy=top&apiKey=2dc84c3059c64e559e8ec89649c242bc";
 
     /**
      * Constant value for the earthquake loader ID. We can choose any integer.
@@ -65,6 +66,7 @@ public class GeneralFragment extends Fragment
      * TextView that is displayed when the list is empty
      */
     private TextView mEmptyStateTextView;
+    private ProgressBar loadingIndicator;
 
     private View rootView;
 
@@ -84,6 +86,9 @@ public class GeneralFragment extends Fragment
 
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.activity_main, container, false);
+
+        loadingIndicator = (ProgressBar)rootView.findViewById(R.id.loading_indicator);
+
 
         // Find a reference to the {@link ListView} in the layout
         ListView newsListView = (ListView) rootView.findViewById(R.id.list);
@@ -128,6 +133,8 @@ public class GeneralFragment extends Fragment
 
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
+
+            loadingIndicator.setVisibility(View.VISIBLE);
             // Get a reference to the LoaderManager, in order to interact with loaders.
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
@@ -137,7 +144,7 @@ public class GeneralFragment extends Fragment
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
-            View loadingIndicator = rootView.findViewById(R.id.loading_indicator);
+         //   View loadingIndicator = rootView.findViewById(R.id.loading_indicator);
             loadingIndicator.setVisibility(View.GONE);
 
             // Update empty state with no connection error message
@@ -154,7 +161,6 @@ public class GeneralFragment extends Fragment
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
         // Hide loading indicator because the data has been loaded
-        View loadingIndicator = rootView.findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No earthquakes found."
